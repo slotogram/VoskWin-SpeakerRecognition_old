@@ -20,33 +20,33 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{02EC9238-8935-4555-A7E7-04B7CA14AFF2}</ProjectGuid>
+    <ProjectGuid>{13DE1C63-9A5C-4C9C-A663-F2EEE1FBD40B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>VoskTest</RootNamespace>
+    <RootNamespace>Voiceauth</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,107 +70,109 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_x86</TargetName>
+    <IncludePath>C:\programs\openfst-winport\src\include;C:\programs\kaldi\src;C:\programs\kaldi\tools\OpenBLAS\include;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\programs\portaudio\build\msvc\Win32\Release;C:\programs\kaldi\tools\OpenBLAS\bin;C:\programs\kaldi\kaldiwin_vs2017_OPENBLAS\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Release;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\programs\kaldi\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Debug;C:\programs\vosk-api-master\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\programs\kaldi\kaldiwin_vs2017_OPENBLAS\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Debug;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Debug;$(LibraryPath)</LibraryPath>
-    <SourcePath>C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Debug;C:\programs\vosk-api-master\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Voice_auth;C:\programs\kaldi\tools\OpenBLAS\include;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\programs\portaudio\build\msvc\Win32\Release;C:\programs\kaldi\tools\OpenBLAS\bin;C:\programs\kaldi\kaldiwin_vs2017_OPENBLAS\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Release;$(LibraryPath)</LibraryPath>
-    <SourcePath>C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\src;$(SourcePath)</SourcePath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;VOICEAUTH_EXPORTS;_WINDOWS;_USRDLL;HAVE_OPENBLAS;HAVE_LAPACK_CONFIG_H;LAPACK_COMPLEX_STRUCTURE;USE_ONLY_PRERECORDED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>VoskWin.lib;portaudio_x86.lib;kaldi-base.lib;kaldi-chain.lib;kaldi-cudadecoder.lib;kaldi-cudamatrix.lib;kaldi-decoder.lib;kaldi-feat.lib;kaldi-fstext.lib;kaldi-gmm.lib;kaldi-hmm.lib;kaldi-ivector.lib;kaldi-lat.lib;kaldi-lm.lib;kaldi-matrix.lib;kaldi-nnet2.lib;kaldi-nnet3.lib;kaldi-online.lib;kaldi-online2.lib;kaldi-rnnlm.lib;kaldi-transform.lib;kaldi-tree.lib;kaldi-util.lib;libfst.lib;libfstscript.lib;libopenblas.dll.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\programs\kaldi\tools\32bit\OpenBLAS-v0.2.14-Win32\lib;C:\programs\openfst-winport\build_output\x86\Release\lib;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Release;</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;VOICEAUTH_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Debug;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>VoskWin.lib;kaldi-base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;VOICEAUTH_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;HAVE_OPENBLAS;HAVE_LAPACK_CONFIG_H;LAPACK_COMPLEX_STRUCTURE;USE_ONLY_PRERECORDED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <CallingConvention>Cdecl</CallingConvention>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>VoskWin.lib;portaudio_x86.lib;Voice_auth_x86.lib;kaldi-base.lib;kaldi-chain.lib;kaldi-cudadecoder.lib;kaldi-cudamatrix.lib;kaldi-decoder.lib;kaldi-feat.lib;kaldi-fstext.lib;kaldi-gmm.lib;kaldi-hmm.lib;kaldi-ivector.lib;kaldi-lat.lib;kaldi-lm.lib;kaldi-matrix.lib;kaldi-nnet2.lib;kaldi-nnet3.lib;kaldi-online.lib;kaldi-online2.lib;kaldi-rnnlm.lib;kaldi-transform.lib;kaldi-tree.lib;kaldi-util.lib;libfst.lib;libfstscript.lib;libopenblas.dll.a;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\programs\kaldi\tools\32bit\OpenBLAS-v0.2.14-Win32\lib;C:\programs\openfst-winport\build_output\x86\Release\lib;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\VoskWin\Release;C:\programs\vosk-api-master\VS_Win_Lib\VoskWin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;VOICEAUTH_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="VoskTest.cpp" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="kaldi_voice_auth.h" />
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\vosk_api.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Voice_auth\Voice_auth.vcxproj">
-      <Project>{13de1c63-9a5c-4c9c-a663-f2eee1fbd40b}</Project>
-    </ProjectReference>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="kaldi_voice_auth.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
